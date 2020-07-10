@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Speed Typing Game</title>
+</head>
+
+<body>
+
+    <div class="title">WordBeater</div>
+    <div class="main-container">
+        <div class="app-container">
+            <div class="instruction">
+                <p>Type the given word within <span style="color: lightgreen;">5</span> seconds</p>
+            </div>
+            <br>
+            <div class="word"></div>
+            <div class="input-field"><input type="text" id="inputField" value="" placeholder="Start typing..."></div>
+            <div class="result">Correct !!</div>
+
+            <div class="instructions">
+                <h2>Instructions</h2>
+                <p>Keep typing words shown above without error. Timer will start upon typing. Have Fun !!</p>
+            </div>
+            <div class="reset-button"><button id="reset">Reset</button></div>
+        </div>
+
+        <div class="time-and-score">
+            <div class="time-left">
+                <div>Time Left</div>
+                <br>
+                <div class="numbers"><span id="countdown">5</span> sec</div>
+            </div>
+            <div class="score">
+                <div>Score</div>
+                <br>
+                <div class="numbers"><span id="score">0</span></div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script src="words.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
