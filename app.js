@@ -1,21 +1,4 @@
-/* NOTES
-
-1. Create a word array to switch words
-2. Set up a pageload event to load forst element of array
-
-4. Start a time interval to update timer value on first keyup event on input field
-4. Switch a boolean to false after first event to prevent multiple countdowns
-5. keep storing value of input field in a variable after each event
-
-
-5. set up keypress event using enter key on the text field
-6. If (textInput === word), increment score, reset timer, change word, clear input variable
-
-*/
-
-
-
-// const words = ["and", "let", "then", "because", "when"];
+// Variable Declarations
 
 const inputField = document.getElementById('inputField');
 const countdown = document.getElementById('countdown');
@@ -28,12 +11,15 @@ let firstInterval = true;
 
 let answer = "";
 let currentIndex = Math.floor(Math.random() * words.length);
+let id;
+
+// Load a random word when the window loads
 
 window.addEventListener('load', () => {
     word.innerHTML = words[currentIndex];
 })
 
-let id;
+// Function to start countdown when user starts typing
 
 function startInterval() {
     let resetId = setInterval(() => {
@@ -51,6 +37,8 @@ function startInterval() {
     id = resetId;
 }
 
+// Function to reset the game
+
 function reset() {
     score.innerText = "0";
     currentIndex = Math.floor(Math.random() * words.length);
@@ -63,19 +51,25 @@ function reset() {
 }
 
 
+// Event listener on word input field to kick off the game
 
 inputField.addEventListener('keypress', (e) => {
+
+    // Check if it is the first interval. Countdown won't be kicked off for subsequent key inputs for the same word
 
     if (firstInterval) {
         startInterval();
         firstInterval = false;
     }
 
-
-
     answer = inputField.value;
 
+    // Compare the input to the word on pressing Enter
+
     if (e.keyCode === 13) {
+
+        // Increment score and change word
+
         if (answer === words[currentIndex]) {
             result.style.visibility = "visible";
             result.innerHTML = "Correct !!"
@@ -86,7 +80,11 @@ inputField.addEventListener('keypress', (e) => {
             clearInterval(id);
             countdown.innerText = 5;
             startInterval();
+
         } else {
+
+            // Disable input field
+
             result.innerHTML = "Game Over. Press reset to try again !!";
             result.style.visibility = "visible";
             result.style.color = "white";
@@ -96,6 +94,8 @@ inputField.addEventListener('keypress', (e) => {
     }
 
 });
+
+// Reset button 
 
 resetButton.addEventListener('click', () => {
     reset();

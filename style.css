@@ -6,18 +6,15 @@ body {
     box-sizing: border-box;
     color: white;
     background: url('https://img.freepik.com/free-photo/old-grunge-dark-textured-wooden-background-surface-old-brown-wood-texture_7182-333.jpg?size=626&ext=jpg');
-    background-size: cover;
-    
+    background-size: cover;    
 }
 
 .main-container {
-    display: flex;
-    
+    display: flex;   
 }
 
 .app-container {
-    flex-basis: 70%;
-    
+    flex-basis: 70%;  
 }
 
 .time-and-score {
