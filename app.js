@@ -3,15 +3,21 @@
 const inputField = document.getElementById('inputField');
 const countdown = document.getElementById('countdown');
 const score = document.getElementById('score');
+const highScore = document.getElementById('highScore');
 const word = document.querySelector('.word');
 const result = document.querySelector('.result');
 const resetButton = document.getElementById('reset');
+const resetHighScoreButton = document.querySelector('.reset-high-score');
 
 let firstInterval = true;
 
 let answer = "";
 let currentIndex = Math.floor(Math.random() * words.length);
 let id;
+
+// Set high score upon loading webpage
+let previousHighScore = localStorage.hasOwnProperty('highScore') ? localStorage['highScore'] : "0";
+highScore.innerText = previousHighScore;
 
 // Load a random word when the window loads
 
@@ -77,6 +83,13 @@ inputField.addEventListener('keypress', (e) => {
             currentIndex = Math.floor(Math.random() * words.length);
             word.innerHTML = words[currentIndex];
             inputField.value = "";
+            // Change value of previous high score
+            if (parseInt(score.innerText) > parseInt(previousHighScore)) {
+                localStorage['highScore'] = score.innerText;
+                console.log(localStorage)
+                highScore.innerText = score.innerText;
+                previousHighScore = score.innerText;
+            }
             clearInterval(id);
             countdown.innerText = 5;
             startInterval();
@@ -84,7 +97,6 @@ inputField.addEventListener('keypress', (e) => {
         } else {
 
             // Disable input field
-
             result.innerHTML = "Game Over. Press reset to try again !!";
             result.style.visibility = "visible";
             result.style.color = "white";
@@ -99,4 +111,13 @@ inputField.addEventListener('keypress', (e) => {
 
 resetButton.addEventListener('click', () => {
     reset();
+})
+
+// Reset high score button
+
+resetHighScoreButton.addEventListener('click', () => {
+    reset();
+    localStorage.removeItem('highScore');
+    highScore.innerText = "0";
+    previousHighScore = "0";
 })
